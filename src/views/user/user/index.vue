@@ -136,6 +136,10 @@
 				this.$refs.addRolesVue.data = res;
 				this.$refs.addRolesVue.sex = res.sex ? true : false;
 				this.$refs.addRolesVue.dialogFormVisible = true;
+				this.$refs.addRolesVue.fileList.push({
+					name: "pic",
+					url: ShowImg(res.icon),
+				});
 			},
 			//删除
 			async handleDelete(val, obj) {

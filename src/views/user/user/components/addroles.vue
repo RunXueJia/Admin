@@ -22,16 +22,7 @@
 			</el-form-item>
 			<br />
 			<el-form-item label="头像/选填">
-				<el-upload
-					action
-					class="upload-demo"
-					:on-change="handlePreview"
-					:file-list="fileList"
-					list-type="picture"
-					:auto-upload="false"
-				>
-					<el-button size="small" type="primary">点击上传</el-button>
-				</el-upload>
+				<UploadImg :pic.sync="data.icon" :fileList.sync="fileList" />
 			</el-form-item>
 		</el-form>
 		<div slot="footer" class="dialog-footer">
@@ -71,7 +62,7 @@
 		},
 
 		mounted() {},
-
+		created() {},
 		methods: {
 			//上传
 			async handlePreview(file) {

@@ -2,13 +2,13 @@
 	<el-card>
 		<el-tabs v-model="activeName">
 			<el-tab-pane label="新增" name="first">
-				<SomeInfo ref="SomeInfo" :formRules="formRules" :formData.sync="formData" />
+				<SomeInfo ref="SomeInfo" :formRules="formRules" :formData="formData" />
 			</el-tab-pane>
 			<el-tab-pane label="SEO信息" name="second">
-				<SeoSet ref="seo" :formRules="formRules" :formData.sync="formData" />
+				<SeoSet ref="seo" :formRules="formRules" :formData="formData" />
 			</el-tab-pane>
 			<el-tab-pane :formRules="formRules" label="文章内容" name="third">
-				<ArticleContent ref="content" :formRules="formRules" :formData.sync="formData" />
+				<ArticleContent ref="content" :formRules="formRules" :formData="formData" />
 			</el-tab-pane>
 		</el-tabs>
 		<el-row type="flex" justify="center">
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+	import { ShowImg } from "@/utils/myFountion";
+
 	import SomeInfo from "./someinfo.vue";
 	import SeoSet from "./seo.vue";
 	import ArticleContent from "./content.vue";
@@ -104,6 +106,10 @@
 				this.$refs.SomeInfo.isHot = res.ishot ? true : false;
 				this.$refs.SomeInfo.isTop = res.istop ? true : false;
 				this.formData = res;
+				this.$refs.SomeInfo.fileList.push({
+					name: "pic",
+					url: ShowImg(res.pic),
+				});
 			},
 			//提交
 			async submit(status) {

@@ -5,6 +5,7 @@ import Vue from 'vue'
 Vue.use(Vuex)
 import user from './modules/user';
 import setting from './modules/setting';
+import permission from './modules/permission';
 const store = new Vuex.Store({
     state: {},
     mutations: {},
@@ -12,7 +13,8 @@ const store = new Vuex.Store({
     actions: {},
     modules: {
         user: user,
-        setting: setting
+        setting: setting,
+        permission,
     }
 })
 

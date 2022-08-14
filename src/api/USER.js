@@ -11,15 +11,10 @@ export const GetUserInfoApi = () => service({
     method: 'post'
 })
 
-export const upImageApi = (file) => service({
+export const upImageApi = (data) => service({
     url: '/admin/common/upload?type=images',
     method: 'post',
-    headers: {
-        'Content-Type': 'multipart/form-data'
-    },
-    data: {
-        file
-    }
+    data
 })
 //获取会员列表
 

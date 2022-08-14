@@ -74,16 +74,19 @@
 			<el-row type="flex" justify="center">
 				<el-col :span="16">
 					<el-form-item label-width="100" prop="pic" label="文章缩略图">
-						<el-upload
-							action
+						<!-- <el-upload
+							action="#"
 							class="upload-demo"
-							:on-change="UploadImg"
+							:http-request="UploadImg"
 							:file-list="fileList"
 							list-type="picture"
-							:auto-upload="false"
+							:on-change="changeImg"
+							:on-remove="onremove"
+							:limit="1"
 						>
 							<el-button size="small" type="primary">点击上传</el-button>
-						</el-upload>
+						</el-upload>-->
+						<UploadImg :pic.sync="formData.pic" :fileList.sync="fileList" />
 					</el-form-item>
 				</el-col>
 			</el-row>
@@ -101,7 +104,6 @@
 </template>
 
 <script>
-	import { upImageApi } from "@/api/USER";
 	import { getCateListApi } from "@/api/cate";
 	import { getTagListApi } from "@/api/Tag";
 	export default {
@@ -143,17 +145,6 @@
 			async getTagsList() {
 				const { data } = await getTagListApi(this.params);
 				this.tags = data;
-			},
-			//上传
-			async UploadImg(file) {
-				try {
-					const res = await upImageApi(file.raw);
-					this.formData.pic = res.savePath;
-				} catch (error) {
-					return;
-				}
-				this.$message.success("图片上传成功");
-				// console.log(res);
 			},
 		},
 	};

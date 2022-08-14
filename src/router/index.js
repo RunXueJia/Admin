@@ -4,12 +4,12 @@ import Layout from '@/views/layout'
 import systemroute from './modules/system'
 import userroute from './modules/user'
 import contentroute from './modules/content'
-
+import adv from './modules/adv'
 Vue.use(VueRouter)
 
 
 const constroute = [
-    systemroute, userroute, contentroute
+    systemroute, userroute, contentroute, adv
 ]
 const syncrouter = [
     {
