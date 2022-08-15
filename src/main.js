@@ -3,9 +3,11 @@ import App from './App.vue'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import store from '@/store/index'
-import '@/router/permission'
+// import '@/router/permission'
 import '@/assets/font-awesome-4.7.0/css/font-awesome.css'
-// console.log(process.env.VUE_APP_ApiUrl);
+import './permission'
+
+
 import components from '@/components'
 Vue.use(components)
 Vue.config.productionTip = false

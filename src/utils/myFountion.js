@@ -11,7 +11,7 @@ export function tranListToTreeData(list, rootValue) {
     // 遍历数组每个元素  询问是否有pid为rootValue （即0）
     list.forEach(item => {
         if (item.meta.pid === rootValue) {
-            const children = tranListToTreeData(list, item.id)
+            const children = tranListToTreeData(list, item.meta.id)
             if (children.length) item.children = children
             arr.push(item)
         }

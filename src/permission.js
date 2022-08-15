@@ -1,7 +1,7 @@
 import { getToken } from '@/utils/auth'
 import router from '@/router/index'
 import { constRoutes } from '@/router/index'
-import store from '@/store'
+import store from '@/store/index'
 
 // 导航守卫的逻辑
 const whitelist = ['/404', '/login']
@@ -15,18 +15,18 @@ router.beforeEach(async (to, from, next) => {
         } else {
             // 登录了去别的页面
             // 判断是否有用户资料，没有则请求
-            if (!store.getters['user/userId']) {
-                const res = await store.dispatch('user/getUserProfileAction')
-                // console.log(res);
-
-                const routes = await store.dispatch('permission/filterRoutes', res)
+            if (!store.getters['user/UserId']) {
+                const menuList = await store.dispatch('user/GetUserInfoFn')
+                // console.log('res', menuList);
+                const routes = await store.dispatch('permission/filterRoutes', menuList)
                 // console.log([...constRoutes, ...routes]);
-                router.addRoutes([...constRoutes, ...routes])
+                // router.addRoutes([...routes, { path: '/*', redirect: '/404' }])
                 // console.log(router);
-
-
+                next(to.path)
+            } else {
+                next()
             }
-            next()
+
         }
     } else {
         // 未登录

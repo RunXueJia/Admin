@@ -1,17 +1,10 @@
 import Vue from "vue";
 import VueRouter from 'vue-router'
 import Layout from '@/views/layout'
-import systemroute from './modules/system'
-import userroute from './modules/user'
-import contentroute from './modules/content'
-import adv from './modules/adv'
 Vue.use(VueRouter)
 
-
-const constroute = [
-    systemroute, userroute, contentroute, adv
-]
-const syncrouter = [
+//constroute
+export let constroute = [
     {
         path: '/',
         component: Layout,
@@ -27,34 +20,6 @@ const syncrouter = [
                     title: '欢迎你'
                 },
             },
-            /* {
-                path: '/user_user',
-                component: () => import('@/views/user/user'),
-                meta: {
-                    title: '会员列表'
-                },
-            },
-            {
-                path: '/system_menu',
-                component: () => import('@/views/system/menu'),
-                meta: {
-                    title: '菜单管理'
-                },
-            },
-            {
-                path: '/system_role',
-                component: () => import('@/views/system/role'),
-                meta: {
-                    title: '角色管理'
-                },
-            },
-            {
-                path: '/system_user',
-                component: () => import('@/views/system/user'),
-                meta: {
-                    title: '用户管理'
-                },
-            }, */
         ]
     },
     {
@@ -65,13 +30,28 @@ const syncrouter = [
         path: '/404',
         component: () => import('@/views/notfound')
     },
-    {
-        path: '/*',
-        redirect: '/404'
-    }
-]
-const router = new VueRouter({
-    routes: [...constroute, ...syncrouter]
-})
 
+]
+
+// 解决报错
+const originalPush = VueRouter.prototype.push
+const originalReplace = VueRouter.prototype.replace
+// 针对 push 方法
+VueRouter.prototype.push = function push(location, onResolve, onReject) {
+    if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+    return originalPush.call(this, location).catch(err => err)
+}
+// 针对 replace 方法
+VueRouter.prototype.replace = function push(location, onResolve, onReject) {
+    if (onResolve || onReject) return originalReplace.call(this, location, onResolve, onReject)
+    return originalReplace.call(this, location).catch(err => err)
+}
+const createRouter = () => new VueRouter({
+    routes: constroute
+})
+const router = createRouter()
+export function resetRouter() {
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher // 新路由实例matcer，赋值给旧路由实例的matcher，（相当于replaceRouter）
+}
 export default router 

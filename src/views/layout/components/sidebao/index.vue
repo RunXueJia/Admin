@@ -12,8 +12,19 @@
 			<i class="el-icon-menu"></i>
 			<span>后台主页</span>
 		</el-menu-item>
-
-		<el-submenu index="/system">
+		<el-submenu v-for="(item,index) in routes" :key="index" :index="item.path">
+			<template #title>
+				<i class="el-icon-menu"></i>
+				<span>{{item.meta.title}}</span>
+			</template>
+			<div v-if="item.children">
+				<el-menu-item v-for="(son,idx) in item.children" :key="idx" :index="son.path">
+					<i class="el-icon-location"></i>
+					<span>{{son.meta.title}}</span>
+				</el-menu-item>
+			</div>
+		</el-submenu>
+		<!-- <el-submenu index="/system">
 			<template #title>
 				<i class="el-icon-menu"></i>
 				<span>系统设置</span>
@@ -86,7 +97,7 @@
 				<i class="el-icon-location"></i>
 				<span>标签管理</span>
 			</el-menu-item>
-		</el-submenu>
+		</el-submenu>-->
 	</el-menu>
 </template>
 
@@ -96,7 +107,7 @@
 	export default {
 		name: "Index",
 		computed: {
-			// ...mapState(["isCollapse"]),
+			...mapState("permission", ["routes"]),
 		},
 		data() {
 			return {};

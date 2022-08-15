@@ -65,9 +65,11 @@
 				// this.quitOut();
 				try {
 					await this.$confirm("退出吗", "提示");
-					this.quitOut();
+					await this.quitOut();
 					this.$router.push("/login");
-				} catch (error) {}
+				} catch (error) {
+					return;
+				}
 			},
 		},
 	};

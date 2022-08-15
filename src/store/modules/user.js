@@ -1,6 +1,6 @@
 import { GetUserInfoApi, LoginApi } from "@/api/USER";
 import { setToken, getToken, removeToken } from '@/utils/auth'
-
+import { resetRouter } from '@/router'
 export default {
     namespaced: true,
     state: {
@@ -26,13 +26,15 @@ export default {
             return state.UserInfo.id
         },
         //用户名 快捷读取
-        name: (state) => state.UserInfo.name
+        name: (state) => state.UserInfo.name,
+        token: (state) => state.token,
     },
     actions: {
         //获取用户信息
         async GetUserInfoFn({ commit }) {
-            let { userInfo } = await GetUserInfoApi()
+            let { userInfo, menuList } = await GetUserInfoApi()
             commit('setUserInfo', userInfo)
+            return menuList
         },
         //用户登陆
         async loginFn({ commit }, data) {
@@ -46,6 +48,7 @@ export default {
         quitOut({ commit }) {
             removeToken()
             commit('setUserInfo', {})
+            resetRouter()
         }
     }
 }
