@@ -31,7 +31,7 @@
 		<!--/ 搜索表单 -->
 		<!-- 新增按钮 -->
 		<div>
-			<el-button @click="$router.push('/content_addArticle')" type="primary" plain>+新增</el-button>
+			<el-button @click="$router.push('/content_article/add')" type="primary" plain>+新增</el-button>
 		</div>
 		<br />
 		<!-- /新增按钮 -->
@@ -149,10 +149,10 @@
 			//修改
 			handleEdit(row) {
 				this.$router.push({
-					path: "/content_editArticle",
-					query: {
-						id: row.id,
-					},
+					path: `/content_article/edit/${row.id}`,
+					// query: {
+					// 	id: row.id,
+					// },
 				});
 			},
 			//删除
