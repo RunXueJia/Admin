@@ -105,6 +105,7 @@
 					password: "",
 					icon: "",
 				};
+				this.fileList = [];
 			},
 		},
 	};
