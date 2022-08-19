@@ -89,8 +89,8 @@
 
 		mounted() {},
 		created() {
-			if (this.$route.params.id) {
-				this.getArticleInfoFn(this.$route.params.id);
+			if (this.$route.query.id) {
+				this.getArticleInfoFn(this.$route.query.id);
 			}
 		},
 		methods: {

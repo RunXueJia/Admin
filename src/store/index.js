@@ -6,6 +6,7 @@ Vue.use(Vuex)
 import user from './modules/user';
 import setting from './modules/setting';
 import permission from './modules/permission';
+import tagsView from './modules/tagsView';
 const store = new Vuex.Store({
     state: {},
     mutations: {},
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
         user: user,
         setting: setting,
         permission,
+        tagsView
     }
 })
 

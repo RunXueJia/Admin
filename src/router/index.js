@@ -17,11 +17,20 @@ export let constroute = [
                 path: '/dashboard',
                 component: () => import('@/views/dashboard'),
                 meta: {
-                    title: '欢迎你'
+                    title: '首页'
                 },
             },
+            {
+                path: '/content_editArticle',
+                component: () => import('@/views/content/article/editArticle.vue'),
+                meta: {
+                    title: '修改文章'
+                },
+            },
+
         ]
     },
+
     {
         path: '/login',
         component: () => import('@/views/login//index.vue')
@@ -30,6 +39,7 @@ export let constroute = [
         path: '/404',
         component: () => import('@/views/notfound')
     },
+
 
 ]
 

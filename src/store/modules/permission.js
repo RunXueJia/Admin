@@ -17,18 +17,21 @@ export default {
             // console.log(data);
             let arr = []
             data.forEach(item => {
-                let obj = {
-                    path: item.path,
-                    meta: {
-                        pid: item.pid,
-                        title: item.title,
-                        id: item.id,
-                    },
-                    component: require(`@/views/${item.component}`).default
-                }
-                if (item.redirect) obj.redirect = item.redirect
+                if (item.mark !== 'content_article_edit') {
+                    let obj = {
+                        path: item.path,
+                        meta: {
+                            pid: item.pid,
+                            title: item.title,
+                            id: item.id,
+                        },
+                        component: require(`@/views/${item.component}`).default
+                    }
+                    if (item.redirect) obj.redirect = item.redirect
 
-                arr.push(obj)
+                    arr.push(obj)
+                }
+
             })
             const routes = tranListToTreeData(arr, 0)
             context.commit('setRoutes', routes)

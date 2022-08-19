@@ -149,10 +149,10 @@
 			//修改
 			handleEdit(row) {
 				this.$router.push({
-					path: `/content_article/edit/${row.id}`,
-					// query: {
-					// 	id: row.id,
-					// },
+					path: `/content_editArticle`,
+					query: {
+						id: row.id,
+					},
 				});
 			},
 			//删除

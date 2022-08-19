@@ -35,12 +35,7 @@ export default {
                 title: '新增文章'
             },
         },
-        {
-            path: '/content_editArticle',
-            component: () => import('@/views/content/article/editArticle.vue'),
-            meta: {
-                title: '修改文章'
-            },
-        }
+
+
     ]
 }

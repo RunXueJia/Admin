@@ -12,6 +12,7 @@
 			<el-header class="layout-header">
 				<NavBar></NavBar>
 			</el-header>
+			<tags-view />
 			<el-main class="layout-main">
 				<router-view></router-view>
 			</el-main>
