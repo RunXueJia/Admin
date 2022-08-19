@@ -89,7 +89,7 @@
 						tags.push({
 							fullPath: tagPath,
 							path: tagPath,
-							name: route.name,
+							name: route.meta.title,
 							meta: { ...route.meta },
 						});
 					}
