@@ -1,15 +1,7 @@
 <template>
   <el-card>
-    <el-button
-      icon="el-icon-plus"
-      type="primary"
-      plain
-      size="small"
-      @click="addHandler(0, 1)"
-      @updateList="initData"
-      style="margin-bottom: 20px"
-      >新增</el-button
-    >
+    <el-button icon="el-icon-plus" type="primary" plain size="small" @click="addHandler(0, 1)" @updateList="initData"
+      style="margin-bottom: 20px">新增</el-button>
     <!-- 表格 -->
     <el-table :data="tableData" style="width: 100%" row-key="id" border>
       <el-table-column prop="title" label="菜单名称"> </el-table-column>
@@ -32,28 +24,10 @@
       </el-table-column>
       <el-table-column prop="address" label="操做 ">
         <template slot-scope="{ row }">
-          <el-button
-            size="mini"
-            type="primary"
-            icon="el-icon-edit"
-            circle
-            @click="editHandler(row.id)"
-          ></el-button>
-          <el-button
-            size="mini"
-            type="warning"
-            icon="el-icon-plus"
-            circle
-            @click="addHandler(row.id, 1)"
-            v-if="row.type === 1"
-          ></el-button>
-          <el-button
-            size="mini"
-            type="danger"
-            icon="el-icon-delete"
-            circle
-            @click="delHandler(row.id)"
-          ></el-button>
+          <el-button size="mini" type="primary" icon="el-icon-edit" circle @click="editHandler(row.id)"></el-button>
+          <el-button size="mini" type="warning" icon="el-icon-plus" circle @click="addHandler(row.id, 1)"
+            v-if="row.type === 1"></el-button>
+          <el-button size="mini" type="danger" icon="el-icon-delete" circle @click="delHandler(row.id)"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -101,9 +75,11 @@ export default {
       await this.$confirm("你确定要删除吗？");
       await delMenuApi({ id: id });
       this.$message.success("删除成功！");
+      this.$store.dispatch('user/GetUserInfoFn')
       this.initData();
     },
   },
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+</style>

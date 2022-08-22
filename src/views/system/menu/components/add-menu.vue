@@ -1,37 +1,17 @@
 <template>
   <div>
-    <el-dialog
-      :visible.sync="dialogShow"
-      title="添加"
-      @close="close"
-      :destroy-on-close="true"
-    >
-      <el-radio-group
-        v-if="formData.pid !== 0"
-        v-model="radio1"
-        @change="changeHandler"
-      >
+    <el-dialog :visible.sync="dialogShow" title="添加" @close="close" :destroy-on-close="true">
+      <el-radio-group v-if="formData.pid !== 0" v-model="radio1" @change="changeHandler">
         <el-radio-button :label="0">菜单</el-radio-button>
         <el-radio-button :label="1">按钮</el-radio-button>
       </el-radio-group>
       <el-row v-if="radio1 === 0" :gutter="15" style="margin-top: 20px">
-        <el-form
-          ref="elForm"
-          :model="formData"
-          :rules="rules"
-          size="medium"
-          label-width="100px"
-        >
+        <el-form ref="elForm" :model="formData" :rules="rules" size="medium" label-width="100px">
           <el-col :span="11">
             <el-row>
               <el-col :span="24">
                 <el-form-item label="菜单名称" prop="title">
-                  <el-input
-                    v-model="formData.title"
-                    placeholder="请输入菜单名称"
-                    clearable
-                    :style="{ width: '100%' }"
-                  >
+                  <el-input v-model="formData.title" placeholder="请输入菜单名称" clearable :style="{ width: '100%' }">
                   </el-input>
                 </el-form-item>
               </el-col>
@@ -41,12 +21,7 @@
             <el-row>
               <el-col :span="24">
                 <el-form-item label="菜单地址" prop="path">
-                  <el-input
-                    v-model="formData.path"
-                    placeholder="请输入菜单地址"
-                    clearable
-                    :style="{ width: '100%' }"
-                  >
+                  <el-input v-model="formData.path" placeholder="请输入菜单地址" clearable :style="{ width: '100%' }">
                   </el-input>
                 </el-form-item>
               </el-col>
@@ -56,12 +31,8 @@
             <el-row>
               <el-col :span="24">
                 <el-form-item label="组件地址" prop="component">
-                  <el-input
-                    v-model="formData.component"
-                    placeholder="请输入组件地址"
-                    clearable
-                    :style="{ width: '100%' }"
-                  ></el-input>
+                  <el-input v-model="formData.component" placeholder="请输入组件地址" clearable :style="{ width: '100%' }">
+                  </el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -70,12 +41,7 @@
             <el-row>
               <el-col :span="24">
                 <el-form-item label="权限标识" prop="mark">
-                  <el-input
-                    v-model="formData.mark"
-                    placeholder="请输入权限标识"
-                    clearable
-                    :style="{ width: '100%' }"
-                  >
+                  <el-input v-model="formData.mark" placeholder="请输入权限标识" clearable :style="{ width: '100%' }">
                   </el-input>
                 </el-form-item>
               </el-col>
@@ -85,19 +51,9 @@
             <el-row>
               <el-col :span="24">
                 <el-form-item label="菜单图示" prop="icon">
-                  <el-select
-                    v-model="formData.icon"
-                    placeholder="请选择菜单图示"
-                    clearable
-                    :style="{ width: '100%' }"
-                  >
-                    <el-option
-                      v-for="(item, index) in iconOptions"
-                      :key="index"
-                      :label="item.label"
-                      :value="item.value"
-                      :disabled="item.disabled"
-                    ></el-option>
+                  <el-select v-model="formData.icon" placeholder="请选择菜单图示" clearable :style="{ width: '100%' }">
+                    <el-option v-for="(item, index) in iconOptions" :key="index" :label="item.label" :value="item.value"
+                      :disabled="item.disabled"></el-option>
                   </el-select>
                 </el-form-item>
               </el-col>
@@ -107,12 +63,8 @@
             <el-row>
               <el-col :span="24">
                 <el-form-item label="重定向" prop="redirect">
-                  <el-input
-                    v-model="formData.redirect"
-                    placeholder="请输入重定向"
-                    clearable
-                    :style="{ width: '100%' }"
-                  ></el-input>
+                  <el-input v-model="formData.redirect" placeholder="请输入重定向" clearable :style="{ width: '100%' }">
+                  </el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -133,10 +85,7 @@
             <el-row>
               <el-col :span="24">
                 <el-form-item label="排序" prop="sort">
-                  <el-input-number
-                    v-model="formData.sort"
-                    placeholder="排序"
-                  ></el-input-number>
+                  <el-input-number v-model="formData.sort" placeholder="排序"></el-input-number>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -170,25 +119,13 @@
       <!-- 按钮内容 -->
       <el-form v-if="radio1 === 1" :model="formData" label-width="100px">
         <el-form-item label="按钮名称">
-          <el-input
-            v-model="formData.title"
-            placeholder="请输入按钮的名称"
-            style="width: 200px"
-          ></el-input>
+          <el-input v-model="formData.title" placeholder="请输入按钮的名称" style="width: 200px"></el-input>
         </el-form-item>
         <el-form-item label="权限标识">
-          <el-input
-            v-model="formData.mark"
-            placeholder="格式：controller@action "
-            style="width: 200px"
-          ></el-input>
+          <el-input v-model="formData.mark" placeholder="格式：controller@action " style="width: 200px"></el-input>
         </el-form-item>
         <el-form-item label="排序" prop="sort">
-          <el-input-number
-            v-model="formData.sort"
-            placeholder="排序"
-            style="width: 200px"
-          ></el-input-number>
+          <el-input-number v-model="formData.sort" placeholder="排序" style="width: 200px"></el-input-number>
         </el-form-item>
       </el-form>
       <div slot="footer">
@@ -242,6 +179,7 @@ export default {
         // 添加
         await addMenuApi(this.formData);
         this.$message.success("添加成功！");
+        this.$store.dispatch('user/GetUserInfoFn')
       }
 
       this.dialogShow = false;
@@ -276,4 +214,5 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+</style>

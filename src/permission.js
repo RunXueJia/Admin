@@ -18,7 +18,7 @@ router.beforeEach(async (to, from, next) => {
             if (!store.getters['user/UserId']) {
                 const menuList = await store.dispatch('user/GetUserInfoFn')
                 // console.log('res', menuList);
-                const routes = await store.dispatch('permission/filterRoutes', menuList)
+                // const routes = await store.dispatch('permission/filterRoutes', menuList)
                 // console.log([...constRoutes, ...routes]);
                 // router.addRoutes([...routes, { path: '/*', redirect: '/404' }])
                 // console.log(router);

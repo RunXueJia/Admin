@@ -1,6 +1,7 @@
 import { GetUserInfoApi, LoginApi } from "@/api/USER";
 import { setToken, getToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
+import store from "../index";
 export default {
     namespaced: true,
     state: {
@@ -34,6 +35,8 @@ export default {
         async GetUserInfoFn({ commit }) {
             let { userInfo, menuList } = await GetUserInfoApi()
             commit('setUserInfo', userInfo)
+            resetRouter()
+            store.dispatch('permission/filterRoutes', menuList)
             return menuList
         },
         //用户登陆
