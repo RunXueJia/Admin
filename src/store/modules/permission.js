@@ -15,6 +15,7 @@ export default {
     actions: {
         filterRoutes(context, data) {
             // console.log(data);
+
             let arr = []
             data.forEach(item => {
                 if (item.mark !== 'content_article_edit') {
@@ -25,8 +26,15 @@ export default {
                             title: item.title,
                             id: item.id,
                         },
-                        component: require(`@/views/${item.component}`).default
+
                     }
+                    try {
+                        const page = require(`@/views/${item.component}`)
+                        obj.component = page.default
+                    } catch (error) {
+                        return
+                    }
+
                     if (item.redirect) obj.redirect = item.redirect
 
                     arr.push(obj)
